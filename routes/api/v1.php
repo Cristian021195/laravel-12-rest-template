@@ -1,5 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\HelloController;
+Route::prefix('v1')->group(function () {
+    // pruebas test
+    Route::get('/hello', [HelloController::class, 'index']);
 
-Route::get('/hello', [HelloController::class, 'index']);
+});
