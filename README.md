@@ -14,7 +14,7 @@ Al tratarse de una API REST, no existe capa de presentación basada en vistas ni
 - MariaDB 10.3 / MySQL
 
 
-# ARQUITECTURA
+## ARQUITECTURA
 
 - `/Actions`: Representa una operación concreta del dominio y suele coordinar múltiples servicios, repositorios o procesos necesarios para completar una tarea
 - `/DTOs`: Objetos para transportar datos entre capas de la aplicación. Proporcionan estructuras tipadas y explícitas para el intercambio de información.
@@ -35,35 +35,29 @@ Al tratarse de una API REST, no existe capa de presentación basada en vistas ni
 - `/Traits`: Comportamiento reutilizables entre múltiples clases. Deben utilizarse únicamente cuando exista una necesidad real. No abusar.
 
 
-# FLUJO DE REQUEST SINCRONO
-HTTP Request (Punto de entrada)
-    ↓
-Controller (Coordinacion. Recibir la request HTTP y devolver la response)
-    ↓
-Action (Orquestar un caso de uso específico.)
-    ↓
-Service (Implementar reglas de negocio reutilizables.)
-    ↓
-Repository (Obtener o persistir datos.)
-    ↓
-Model (Representar la entidad y sus relaciones.)
-    ↓
-Resource/DTOs (El formato de transporte de paquetes. Transformar datos para salida.)
-    ↓
-HTTP Response JSON (Punto de salida)
+## FLUJO DE REQUEST SINCRONO
+```mermaid
+flowchart TD
+    A["HTTP Request (Punto de entrada)"] --> B["Controller (Coordinacion. Recibir la request HTTP y devolver la response)"]
+    B --> C["Action (Orquestar un caso de uso específico.)"]
+    C --> D["Service (Implementar reglas de negocio reutilizables.)"]
+    D --> E["Repository (Obtener o persistir datos.)"]
+    E --> F["Model (Representar la entidad y sus relaciones)"]
+    F --> G["Resource/DTOs (El formato de transporte de paquetes. Transformar datos para salida.)"]
+    G --> H["HTTP Response JSON (Punto de salida)"]
+```
 
 
-# FLUJO DE REQUEST SINCRONO
-Request
-    ↓
-Controller
-    ↓
-Action / Service
-    ↓
-Job o Tarea a Realizar
-    ↓
-Procesamiento en cola
+## FLUJO DE REQUEST SINCRONO
+```mermaid
+flowchart LR
+    A["Request"] --> B["Controller"]
+    B --> C["Action / Service"]
+    C --> D["Job o Tarea a Realizar"]
+    D --> E["Procesamiento en cola"]
+```
 
-# GUIA DE INSTALACIÓN
+## GUIA DE INSTALACIÓN
 
-# PROBLEMAS COMUNES Y SOLUCIONES
+
+## PROBLEMAS COMUNES Y SOLUCIONES
