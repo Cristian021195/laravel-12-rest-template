@@ -29,6 +29,7 @@ Al tratarse de una API REST, no existe capa de presentación basada en vistas ni
 - `/Jobs`: Procesos que se ejecutan de manera asíncrona mediante colas. Basicamente llamados desde un cron job o eventos externos
 - `/Models`: Representan las entidades persistidas en la base de datos mediante Eloquent. Su responsabilidad principal es modelar los datos y las relaciones entre entidades. Si hay lógica de negocio compleja va fuera de los modelos.
 - `/Policies`: Definen reglas de autorización sobre los recursos del sistema. Permiten centralizar permisos y controlar qué acciones puede realizar un usuario.
+- `/Interfaces`: Suelen usarse en puntos donde quieres desacoplar implementaciones.
 - `/Providers`: Clases que registran servicios, configuraciones y dependencias dentro del contenedor de Laravel. Son el punto principal para la configuración e inyección de dependencias.
 - `/Repositories`: Abstraen el acceso a los datos. Desacoplan la lógica de negocio de la implementación de persistencia. Los servicios y acciones deben interactuar con repositorios en lugar de acceder directamente a la base de datos cuando sea necesario mantener una capa de abstracción.
 - `/Services`: Contienen lógica de negocio reutilizable. Implementan reglas del dominio que pueden ser utilizadas por Actions, Jobs o Controllers.

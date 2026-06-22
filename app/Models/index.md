@@ -1,19 +1,36 @@
 # Model
+
 Responsabilidad: Model → representar datos/entidades
+El Model representa una entidad del sistema. Representa una tabla
+No debería contener lógica de negocio muy compleja.
 
-El Model representa una entidad del sistema.
+**Responsabilidad:**
+- Relaciones
+- Casts
+- Scopes
 
-Ejemplos:
+**Ejemplos:**
 - User
 - Product
 - Order
 - Invoice
 
-En Laravel normalmente:
+**En Laravel normalmente:**
 - representa una tabla
 - maneja relaciones
 - encapsula datos
 
-Diferencia importante
+***Diferencia importante***
 - Model: Representa “qué es algo”.
 - Service: Representa “qué hacemos con eso”.
+
+```
+class Order extends Model
+{
+    protected $fillable = [
+        'product_id',
+        'quantity',
+        'status'
+    ];
+}
+```

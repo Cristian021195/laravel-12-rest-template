@@ -1,9 +1,8 @@
 # DTOs (Data Transfer Object)
 
-Responsabilidad: DTO → transportar datos estructurados
-Transportar datos de manera tipada y clara.
+DTO → transportar datos estructurados. Transportar datos de manera tipada y clara.
 
-Problema típico sin DTO
+***Problema típico sin DTO***
 ```
 createUser([
     'name' => 'Juan',
@@ -17,7 +16,7 @@ Problemas:
 - difícil autocomplete
 - difícil mantener
 
-Con DTO
+***Con DTO***
 
 ```
 new CreateUserDTO(
@@ -26,10 +25,31 @@ new CreateUserDTO(
 );
 ```
 
-Beneficios:
-- ✅ tipado
-- ✅ claridad
-- ✅ autocomplete
-- ✅ contratos claros
-- ✅ menos errores
-- ✅ más mantenible
+```
+class CreateOrderDTO
+{
+    public function __construct(
+        public int $productId,
+        public int $quantity,
+        public string $paymentMethod
+    ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            productId: $data['product_id'],
+            quantity: $data['quantity'],
+            paymentMethod: $data['payment_method']
+        );
+    }
+}
+```
+
+**Beneficios:**
+- Evita pasar arrays por toda la aplicación.
+- Tipado
+- Claridad
+- Autocomplete
+- Contratos claros
+- Menos errores
+- Más mantenible

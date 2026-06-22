@@ -11,6 +11,28 @@ Acá vive:
 - ✅ integraciones
 - ✅ decisiones del dominio
 
+```
+class OrderService
+{
+    public function __construct(
+        private OrderRepository $repository
+    ) {}
+
+    public function create(CreateOrderDTO $dto): Order
+    {
+        $order = $this->repository->create([
+            'product_id' => $dto->productId,
+            'quantity' => $dto->quantity,
+            'status' => OrderStatusEnum::PENDING
+        ]);
+
+        ProcessPaymentJob::dispatch($order);
+
+        return $order;
+    }
+}
+```
+
 Ej:
 - crear usuario
 - generar factura
